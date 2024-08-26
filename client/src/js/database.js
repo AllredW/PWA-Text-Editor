@@ -1,6 +1,7 @@
 import { openDB } from 'idb';
 
 const initdb = async () =>
+  // Check: if database does not already exists, creates a new database
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {

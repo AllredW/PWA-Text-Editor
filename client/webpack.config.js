@@ -55,7 +55,33 @@ module.exports = () => {
 
     module: {
       rules: [
-        
+                // CSS loader
+        // Reminder- An 'i' after a regular expression specifies
+        // that the test requires a case-insensitive match
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
+        // Image loader
+        // {
+        //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        //   type: "asset/resource",
+        // },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          // Babel-loader in order to use ES6.
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
+            },
+          },
+        },
       ],
     },
   };

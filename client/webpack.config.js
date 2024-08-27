@@ -1,28 +1,26 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const path = require('path');
-const { InjectManifest } = require('workbox-webpack-plugin');
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
+const path = require("path");
+// Require the InjectManifest class of the WorkBoxPlugin
+const { InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
-    mode: 'development',
+    mode: "development",
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
       delete: "./src/js/delete.js",
     },
     output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      filename: "[name].bundle.js",
+      path: path.resolve(__dirname, "dist"),
     },
     plugins: [
       // Webpack plugin that generates the html file and injects the bundles.
       new HtmlWebpackPlugin({
         template: "./index.html",
-        title: "TextBox",
+        title: "JATE",
         favicon: "./favicon.ico",
       }),
       // Injects the custom service worker
@@ -36,7 +34,7 @@ module.exports = () => {
         inject: true,
         name: "Just Another Text Editor",
         short_name: "JATE",
-        description: "Whatever's on your mind, put it on a page.",
+        description: "Tell us all about it!",
         favicon: "./favicon.ico",
         // Theme and background color pulled from duotone-light.min.css
         background_color: "#faf8f5",
@@ -45,7 +43,7 @@ module.exports = () => {
         publicPath: "/",
         icons: [
           {
-            src: path.resolve("src/images/logo.png"),
+            src: path.resolve("src/images/logoNew.png"),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join("assets", "icons"),
           },
@@ -55,7 +53,7 @@ module.exports = () => {
 
     module: {
       rules: [
-                // CSS loader
+        // CSS loader
         // Reminder- An 'i' after a regular expression specifies
         // that the test requires a case-insensitive match
         {
